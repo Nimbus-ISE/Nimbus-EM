@@ -2,6 +2,9 @@ import numpy as np
 import scipy.sparse as sparse
 from graphallshortestpaths import graphallshortestpaths
 
+# ITMETHOD = 0; # (Fast Sequential Itinerary Creation) with extra History  (M-PIREM) [1]
+ITMETHOD = 1; # (Fast Sequential Itinerary Creation)  (PIREM) [1]
+
 
 EXP_MAX = 1 # Expectation Maximization
 RUN_REMOVAL = 0 # RUN REMOVAL STAGE

@@ -97,5 +97,4 @@ for DATASET = 1:1
     save(sprintf('RES//resRC_H40_data_%d_%d_%d_%d_%2.3f.mat', ITMETHOD, EXP_MAX, RUN_REMOVAL, DATASET, MEAN_OBJ), 'stats');
 
 end
-
-MEAN_OBJ
+k

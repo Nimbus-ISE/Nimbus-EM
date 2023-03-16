@@ -14,10 +14,11 @@ def getSeqItSelection(G, params, method):
         for ite in range(N):  # N is max size of path
             fsave = []
             fsaveexp = []
-            Set = np.setdiff1d(np.arange(1, N + 1), It)  # candicate nodes for visiting
+            Set = np.setdiff1d(np.arange(1, N + 1), It)  # candidate nodes for visiting
             first = 0
             change = 0
-            for i in range(Set.shape[0]):
+
+            for i in range(Set.shape[0]): # simulate adding a new node i
                 nodeAdd = Set[i]
                 newIt, _, f, fexp = checkNode(G, params, nodeAdd, It, method)
                 fsave.append(f)
@@ -67,6 +68,7 @@ def getSeqItSelection(G, params, method):
                 It = BestIt
         if change == 0:
             break
+    # save FOs to params
     params["BestFO"] = BestFO
     params["BestExpFO"] = BestExpFO
 
