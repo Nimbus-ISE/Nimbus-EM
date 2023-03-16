@@ -1,1 +1,2 @@
-## PIREM implementation in python
+# Nimbus-EM
+Implementation of Expectation Maximization PIREM
