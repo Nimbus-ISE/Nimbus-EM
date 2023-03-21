@@ -1,6 +1,7 @@
 import numpy as np
 
 from .checkNode import checkNode
+from .isItineraryValid import isItineraryValid
 
 def getSeqItSelection(G, params, method):
     EXP_MAX = params["EXP_MAX"]
@@ -24,7 +25,7 @@ def getSeqItSelection(G, params, method):
 
             for i in range(len(Set)): # simulate adding a new node i
                 nodeAdd = Set[i]
-                print('adding node',i)
+                print('try adding node', i)
                 newIt, _, f, fexp = checkNode(G, params, nodeAdd, It, method)
                 fsave.append(f)
                 fsaveexp.append(fexp)
@@ -47,6 +48,7 @@ def getSeqItSelection(G, params, method):
             if change == 0:
                 break
             It = BestIt
+            print('Curr It', It)
 
         if RUN_REMOVAL == 1:  # REMOVAL STAGE (OPTIONAL)
             for ite in range(1):

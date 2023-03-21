@@ -15,8 +15,7 @@ def checkNode(G, params, nodeAdd, It, method):
     if np.any(It == nodeAdd): # the given node belongs on the given itinerary (dupe nodes) 
         error = 1
         return newIt, error, BestFO, BestExpFO
-
-    NewSet = It + [nodeAdd] # Nodes of new itinerary
+    NewSet = list(It) + [nodeAdd] # Nodes of new itinerary
     print(NewSet)
     nodeStart = params['nodeStart'] # parameters 
     nodeEnd = params['nodeEnd']
