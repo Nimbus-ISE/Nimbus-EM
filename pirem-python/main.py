@@ -129,8 +129,8 @@ params['timeEnd'] = 18
 params['AvCostUser'] = 3
 # Nmin = 0*Nmin
 # Nmax = 0*Nmin+100
-params['Nmin'] = 0 # minimum locations per category
-params['Nmax'] = 2
+params['Nmin'] = [0] * 8 # minimum locations per category
+params['Nmax'] = [2] * 8
 params['Ntype'] = 0 # flexibility
 
 params['EXP_MAX'] = 1

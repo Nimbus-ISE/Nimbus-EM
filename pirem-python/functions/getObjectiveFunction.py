@@ -18,7 +18,7 @@ def getObjectiveFunction(It, timeStart, timeEnd, visitTimeStart, visitTimeEnd, R
     f = f * np.log(1 + len(It)) / (np.log(1 + N) * (timeEnd - timeStart))
     f0 = f
 
-    NR = np.zeros(Nmin.size)
+    NR = np.zeros(len(Nmin))
     for i in range(len(It)):
         NR[Cat[It[i]]-1] += 1
 
@@ -33,7 +33,7 @@ def getObjectiveFunction(It, timeStart, timeEnd, visitTimeStart, visitTimeEnd, R
     if len(pos_c3) > 0:
         c[2] = np.sum((Nmax[pos_c3] / NR[pos_c3]) ** 2)
 
-    NC = Nmin.size
+    NC = len(Nmin)
     cat = np.sum(c) / (NC + 1)
     fr = f
     f = cat + (fr / (NC + 1))  # Objective function f
