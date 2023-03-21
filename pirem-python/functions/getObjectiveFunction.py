@@ -44,4 +44,4 @@ def getObjectiveFunction(It, timeStart, timeEnd, visitTimeStart, visitTimeEnd, R
 
     f_Exp = fr_exp + fc_exp  # expected value of f
 
-    return f, f_Exp, c, f0
+    return f, f_Exp#, c, f0

@@ -35,5 +35,14 @@ def isItineraryValid(OpenHours, MinTimeNodes, DistTimes, It, nodeStart, nodeEnd,
 
     return valid, visitTimeStart, visitTimeEnd
 
+# check if start visit time is in the time bracket
 def isOpen(openHours, visitTimeStart, visitTimeEnd):
+    # print(openHours)
+    # check if openHours is nested (2 or more opening hours)
+    if any(isinstance(sub, list) for sub in openHours):
+        inTimeWindows = []
+        for openHour in openHours:
+            inTimeWindows.append(visitTimeStart >= openHour[0]) and (visitTimeEnd <= openHour[1])
+        return np.any(inTimeWindows)
+    # only 1 opening hour
     return (visitTimeStart >= openHours[0]) and (visitTimeEnd <= openHours[1])
