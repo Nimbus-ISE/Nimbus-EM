@@ -1,25 +1,30 @@
 import numpy as np
 
+from .checkNode import checkNode
+
 def getSeqItSelection(G, params, method):
     EXP_MAX = params["EXP_MAX"]
     RUN_REMOVAL = params["RUN_REMOVAL"]
 
     BestIt = []
     It = []  # final Itinerary
-    N = G["RatingsNodes"].shape[0] # node size
+    N = G['N'] # node size
     BestExpFO = 0  # Expected Gain
     BestFO = 0
     change = 0
+
     for ite0 in range(N):
         for ite in range(N):  # N is max size of path
             fsave = []
             fsaveexp = []
-            Set = np.setdiff1d(np.arange(1, N + 1), It)  # candidate nodes for visiting
+            Set = list(set([i for i in range(0, N)]) - set(It))  # candidate nodes for visiting
+            # print(Set)
             first = 0
             change = 0
 
-            for i in range(Set.shape[0]): # simulate adding a new node i
+            for i in range(len(Set)): # simulate adding a new node i
                 nodeAdd = Set[i]
+                print('adding node',i)
                 newIt, _, f, fexp = checkNode(G, params, nodeAdd, It, method)
                 fsave.append(f)
                 fsaveexp.append(fexp)

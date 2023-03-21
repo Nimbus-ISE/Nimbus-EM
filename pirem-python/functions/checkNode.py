@@ -10,7 +10,8 @@ def checkNode(G, params, nodeAdd, It, method):
         error = 1
         return newIt, error, BestFO, BestExpFO
 
-    NewSet = np.concatenate((It, [nodeAdd])) # Nodes of new itinerary
+    NewSet = It + [nodeAdd] # Nodes of new itinerary
+    print(NewSet)
     nodeStart = params['nodeStart'] # parameters 
     nodeEnd = params['nodeEnd']
     timeStart = params['timeStart']
@@ -18,7 +19,8 @@ def checkNode(G, params, nodeAdd, It, method):
     AvCostUser = params['AvCostUser']
 
     # cost control
-    if  np.mean(G.AvCostNodes[NewSet]) > AvCostUser: #the average cost is higher that the given user average 
+    costs = [G['AvCostNodes'][i] for i in NewSet]
+    if  (sum(costs) / len(costs)) > AvCostUser: #the average cost is higher that the given user average 
         error = 2
         return newIt, error, BestFO, BestExpFO
 
