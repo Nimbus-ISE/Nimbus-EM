@@ -4,6 +4,7 @@
 import numpy as np
 
 from .isItineraryValid import isItineraryValid
+from .getObjectiveFunction import getObjectiveFunction
 
 def checkNode(G, params, nodeAdd, It, method):
     EXP_MAX = params['EXP_MAX']
@@ -48,7 +49,7 @@ def checkNode(G, params, nodeAdd, It, method):
                 testIt[0:i] = It[0:i]
                 
             valid, visitTimeStart, visitTimeEnd = isItineraryValid(G['OpenHours'], G['MinTimeNodes'], DistTimes, testIt, nodeStart, nodeEnd, timeStart, timeEnd)
-            f, fexp = getObjectiveFunction(testIt, params['timeStart'], params['timeEnd'], visitTimeStart, visitTimeEnd, G.RatingsNodes, G.N, params['Nmin'], params['Nmax'], G.CategoriesNodes)
+            f, fexp = getObjectiveFunction(testIt, params['timeStart'], params['timeEnd'], visitTimeStart, visitTimeEnd, G['RatingsNodes'], G['N'], params['Nmin'], params['Nmax'], G['CategoriesNodes'])
             if np.min(valid) == 1 and fexp > BestExpFO and EXP_MAX == 1:
                 newIt = testIt
                 BestFO = f
