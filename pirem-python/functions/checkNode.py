@@ -1,4 +1,9 @@
+# It updates the path by adding the nodeAdd to the current path
+# It also check for validity of the new path
+
 import numpy as np
+
+from .isItineraryValid import isItineraryValid
 
 def checkNode(G, params, nodeAdd, It, method):
     EXP_MAX = params['EXP_MAX']
@@ -42,7 +47,7 @@ def checkNode(G, params, nodeAdd, It, method):
             else: # insert node at the last
                 testIt[0:i] = It[0:i]
                 
-            valid, visitTimeStart, visitTimeEnd = isItineraryValid(G.OpenHours, G.MinTimeNodes, DistTimes, testIt, nodeStart, nodeEnd, timeStart, timeEnd)
+            valid, visitTimeStart, visitTimeEnd = isItineraryValid(G['OpenHours'], G['MinTimeNodes'], DistTimes, testIt, nodeStart, nodeEnd, timeStart, timeEnd)
             f, fexp = getObjectiveFunction(testIt, params['timeStart'], params['timeEnd'], visitTimeStart, visitTimeEnd, G.RatingsNodes, G.N, params['Nmin'], params['Nmax'], G.CategoriesNodes)
             if np.min(valid) == 1 and fexp > BestExpFO and EXP_MAX == 1:
                 newIt = testIt

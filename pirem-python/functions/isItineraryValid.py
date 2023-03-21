@@ -11,15 +11,15 @@ def isItineraryValid(OpenHours, MinTimeNodes, DistTimes, It, nodeStart, nodeEnd,
     visitTimeStart = np.zeros(len(It) + 1)
     visitTimeEnd = np.zeros(len(It) + 1)
 
-    t = timeStart + DistTimes[nodeStart, It[0]]
+    t = timeStart + DistTimes[nodeStart][It[0]]
     for i in range(len(It)):
         visitTimeStart[i] = t
         t = t + MinTimeNodes[It[i]]
         visitTimeEnd[i] = t
         if i < len(It) - 1:
-            t = t + DistTimes[It[i], It[i+1]]
+            t = t + DistTimes[It[i]][It[i+1]]
         else:
-            t = t + DistTimes[It[i], nodeEnd]
+            t = t + DistTimes[It[i]][nodeEnd]
         if isOpen(OpenHours[It[i]], visitTimeStart[i], visitTimeEnd[i]) < 0.95:
             valid[i] = -1
         else:
